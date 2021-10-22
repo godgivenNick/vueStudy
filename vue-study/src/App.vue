@@ -168,11 +168,11 @@ export default {
   methods: {
     add() {
       const currentTicker = {
-        name: this.ticker,
+        name: this.ticker.toUpperCase(),
         price: '-',
       }
 
-      this.checkTicker(this.ticker)
+      this.checkTicker(this.ticker.toUpperCase())
       if(this.error){
         return;
       }
