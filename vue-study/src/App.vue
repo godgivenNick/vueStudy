@@ -22,6 +22,7 @@
               <input
                 v-model="ticker"
                 @keydown.enter="add()"
+                @input="error=false"
                 type="text"
                 name="wallet"
                 id="wallet"
