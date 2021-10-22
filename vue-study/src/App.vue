@@ -158,6 +158,7 @@ export default {
       graph: [],
       preloader: true,
       error: false,
+      coins: null,
 
       sel: null,
       apiKey:
@@ -212,6 +213,17 @@ export default {
       this.error = true;
     },
 
+    getCoins(){
+
+      fetch(
+        `https://min-api.cryptocompare.com/data/all/coinlist?summary=true`,
+      )
+      .then((response) => { return response.json(); })
+      .then((data) => { this.coins = data.data })
+
+      // console.log(this.coins);
+    },
+
     checkTicker(name){
       this.tickers.find(function(t){
         if( t.name === name ){
@@ -227,6 +239,10 @@ export default {
         (price) => 5 + (price - minValue) * 95 / (maxValue - minValue),
       )
     },
+  },
+
+  created: function(){
+    this.getCoins();
   },
 
   mounted: function(){
